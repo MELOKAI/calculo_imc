@@ -3,7 +3,7 @@ export type Level = {
     color: string;
     icon: 'down' | 'up';
     imc: number[];
-    
+    yourImc?:number;
 }
 
 export const levels: Level[] =  [
@@ -17,19 +17,19 @@ export const calculateImc = (altura:number, peso:number) => {
   const imc= (peso/(altura*altura));
 
   for (let i in levels) {
-    if ( imc>= levels [i]. imc [0] && imc <=  levels[1]. imc (1)){ 
 
-      levels [1].yourImc= imc ;
+    if ( imc >= levels [i]. imc [0] && imc <=  levels [i].imc [1]){ 
+      levels [i] .yourImc = imc ;
+       return levels[i]
 
-      return levels[1]
-     
-    }
+      }
+      }
+   return null;
       
-
-
-    ]}
-
-    }
-
-  }
 }
+
+   
+
+    
+
+ 

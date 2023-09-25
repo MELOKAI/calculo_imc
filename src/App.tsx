@@ -1,21 +1,29 @@
 import { useState } from 'react';
 import styles from './App.module.css';
-import poweredImage from './assets/powered.png'
-import {levels, calculateImc} from './helpers/imc'
-import { GridItem } from './components/griditem';
+import poweredImage from './assets/powered.png';
+import left from './assets/leftarrow.png'
+import {levels, calculateImc, Level} from './helpers/imc';
+import { GridItem } from './components/GridItem'
 
 const App = () => {
   
   const [altura, setAltura] = useState(0);
   const [peso, setPeso]     = useState(0);
+  const [toShow, settoShow] = useState<Level | null>(null);
 
   const handleCalc = () => {
-    if (altura && peso) {
-
+    if (altura && peso){
+      settoShow(calculateImc(altura, peso))
     }
     else {
       alert("Informe a Altura e o Peso")
     }
+  }
+
+  const handleBackButton = () =>{
+    settoShow(null);
+    setAltura(0);
+    setPeso(0);
   }
 
   return(
@@ -47,17 +55,25 @@ const App = () => {
 
             </div>
             
-            <div className={styles.rightSide}>
-              <div className={styles.grid}>
-
-             {levels.map((item,key) => (
-              <GridItem key= {key} item={item}/>
-             ))}
-                
-              </div>
-            </div>
-        </div>
-    </div>
+              <div className={styles.rightSide}>
+                {!toShow &&
+                <div className={styles.grid}>
+                    {levels.map( (item, key) => (
+                      <GridItem key={key} item={item}/>
+                    ))}
+                </div>
+                  }
+                {toShow &&
+                <div className={styles.rightBig}>
+                  <GridItem item={toShow}/>
+                    <div className={styles.rightArrow} onClick={handleBackButton}>
+                          <img src={left} width={25} />
+                    </div>
+                </div>
+                }
+                </div>
+          </div>
+      </div>
   )
 }
 

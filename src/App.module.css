@@ -63,12 +63,29 @@ body{
    flex:1;
    margin-left: 40px;
    display: flex;
-   
 }
 
 .container .rightSide .grid{
+   flex:1;
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 20px;
+}
+
+.container .rightSide .rightBig{
   flex:1;
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap:20px;
+  display:flex;
+}
+
+.container .rightSide .rightArrow{
+  position: absolute;
+  background-color: #227C9D;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 145px;
 }
